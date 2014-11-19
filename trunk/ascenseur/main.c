@@ -1,12 +1,13 @@
 /*DEFINTIONS DES BIBLIOTHEQUES */
 #include <stdio.h>
 #include <stdint.h>
-#include <Windows.h>
+#include <time.h>
+#include <ctype.h>
+#include "deplacement.h"
 
 /*DEFINITION DES PROTOTYPES DES FONCTIONS*/
 int appel();
 int selection();
-int deplacement(int, int);
 int saisieEntier(char chaine[]);
 /*DEFINITION DES CONSTANTES*/
 int MIN = -3, MAX = 11;
@@ -53,37 +54,26 @@ int selection(void){
   @params       chaine  char[]:   texte à afficher
   @return       input   int  :    entier saisie par utilisateur*/
 int saisieEntier(char chaine[]){
-    int input, fini = 0;
-    while (fini == 0 ){
-         printf("%s\n",chaine);
-        if(scanf("%d",&input)){
-            fini = 1;
-        }else{
+  
+    int input, bool, k;
+    
+    do{
+      
+        printf("%s\n",chaine);	
+	k = scanf("%d",&input);
+	scanf("%*[^\n]");
+	getchar();
+	
+        if( k == 0){	  
             printf("Erreur de saisie !\n");
-        }
-        fflush(stdin);
-    }
-    return (input);
-}
+	    bool = 0;
+        }else{
+	    bool = 1;
+	}
 
-/*Fonction qui permet de déplacer l'ascenseur de puis l'étage appellant jusqu'à l'étage désiré
-  @params       a     int :   étage appelant
-  @params       asc   int :   étage désiré
-  @return       asc   int :   étage courant*/
-int deplacement(int a, int asc){
-    if (a > asc){
-        do {
-            printf("Etage:%d\n", asc);
-            Sleep(2);
-        } while (++asc < a);
-        printf("Arrive etage %d\n", asc);
-    } else {
-        do{
-            printf("Etage:%d\n", asc);
-            Sleep(2);
-        } while (--asc > a);
-        printf("Arrivee etage %d\n", asc);
-    }
-    return (asc);
+	
+    }while (bool == 0);
+    
+    return (input);
 }
 
