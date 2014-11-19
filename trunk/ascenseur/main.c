@@ -7,7 +7,7 @@
 int appel();
 int selection();
 int deplacement(int, int);
-
+int saisieEntier(char chaine[]);
 /*DEFINITION DES CONSTANTES*/
 int MIN = -3, MAX = 11;
 
