@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <time.h>
+
 int deplacement(int eDesire, int eCourant) {
  if(eDesire > eCourant) {
    do {
